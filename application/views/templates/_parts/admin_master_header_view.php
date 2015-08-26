@@ -1,71 +1,119 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php echo $page_title;?></title>
-<link href="<?php echo site_url('assets/admin/css/bootstrap.min.css');?>" rel="stylesheet">
-<?php echo $before_head;?>
-</head>
-<body>
-<?php
-if($this->ion_auth->logged_in()) {
-?>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand"
-href="<?php echo site_url('admin');?>"><?php echo $this->config->item('cms_title');?></a>
-		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="#">A link</a></li>
-				<li><a href="#">Another link</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php print_r($this->ion_auth->user()->row()->username);?> <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					<?php
-					if($this->ion_auth->is_admin())
-					{
-					?>
-						<li><a href="<?php echo site_url('admin/groups'); ?>">Groups</a></li>
-						<li><a href="<?php echo site_url('admin/users'); ?>">Users</a></li>
-					<?php
-					}
-					?>
-						<li><a href="#">Profile page</a></li>
-						<li class="divider"></li>
-						<li><a href="<?php echo site_url('admin/user/logout');?>">Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-	</div>
-</nav>
-<?php
-if($this->session->flashdata('message')) {
-?>
-<div class="container" style="padding-top:40px;">
-	<div class="alert alert-info alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<?php echo $this->session->flashdata('message');?>
-	</div>
-</div>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title><?php echo $page_title;?></title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.5 -->
+		<link rel="stylesheet" href="<?php echo site_url('assets/lte/bootstrap/css/bootstrap.min.css');?>">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="<?php echo site_url('assets/lte/dist/css/AdminLTE.min.css');?>">
+		<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+					page. However, you can choose any other skin. Make sure you
+					apply the skin class to the body tag so the changes take effect.
+		-->
+		<link rel="stylesheet" href="<?php echo site_url('assets/lte/dist/css/skins/skin-blue.min.css');?>">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+				<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<!--
+	BODY TAG OPTIONS:
+	=================
+	Apply one or more of the following classes to get the
+	desired effect
+	|---------------------------------------------------------|
+	| SKINS         | skin-blue                               |
+	|               | skin-black                              |
+	|               | skin-purple                             |
+	|               | skin-yellow                             |
+	|               | skin-red                                |
+	|               | skin-green                              |
+	|---------------------------------------------------------|
+	|LAYOUT OPTIONS | fixed                                   |
+	|               | layout-boxed                            |
+	|               | layout-top-nav                          |
+	|               | sidebar-collapse                        |
+	|               | sidebar-mini                            |
+	|---------------------------------------------------------|
+	-->
+	<body class="hold-transition skin-blue sidebar-mini">
+		<?php
+		if($this->ion_auth->logged_in()) {
+		?>
+		<div class="wrapper">
+
+			<!-- Main Header -->
+			<header class="main-header">
+
+				<!-- Logo -->
+				<a href="<?php echo site_url('admin');?>" class="logo">
+					<!-- mini logo for sidebar mini 50x50 pixels -->
+					<span class="logo-mini"><?php echo $this->config->item('cms_title');?></span>
+					<!-- logo for regular state and mobile devices -->
+					<span class="logo-lg"><?php echo $this->config->item('cms_title');?></span>
+				</a>
+
+				<!-- Header Navbar -->
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+						<span class="sr-only">Toggle navigation</span>
+					</a>
+					<!-- Navbar Right Menu -->
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- User Account Menu -->
+							<li class="dropdown user user-menu">
+								<!-- Menu Toggle Button -->
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<!-- The user image in the navbar-->
+									<img src="<?php echo site_url('assets/lte/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
+									<!-- hidden-xs hides the first_name on small devices so only the image appears. -->
+									<span class="hidden-xs"><?php echo $this->ion_auth->user()->row()->first_name; ?></span>
+								</a>
+								<ul class="dropdown-menu">
+									<!-- The user image in the menu -->
+									<li class="user-header">
+										<img src="<?php echo site_url('assets/lte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+										<p>
+											<?php echo $this->ion_auth->user()->row()->first_name . ' ' . $this->ion_auth->user()->row()->last_name . ' - ' . $this->ion_auth->user()->row()->company; ?>
+										</p>
+									</li>
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-left">
+											<a href="<?php echo site_url('admin/users/edit/'.$this->ion_auth->user()->row()->id);?>" class="btn btn-default btn-flat">Edit Profile</a>
+										</div>
+										<div class="pull-right">
+											<a href="<?php echo site_url('admin/user/logout');?>" class="btn btn-default btn-flat">Logout</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
 <?php
 }
 ?>
-<?php
-}
-?>
+
+
+
+

@@ -11,12 +11,12 @@ class MY_Controller extends CI_Controller
 
 	protected function render($the_view = NULL, $template = 'master') {
 
-		if( $template == 'json' || $this->input->is_ajax_request() ) {
+		if( $template == 'json' || isset($_GET['json']) ) {
 			header( 'Content-Type: application/json' );
 			echo json_encode( $this->data );
 		}
 
-		elseif( is_null( $template ) ) {
+		elseif( is_null( $template ) || $this->input->is_ajax_request() ) {
 			$this->load->view( $the_view, $this->data );
 		}
 
@@ -51,13 +51,23 @@ class Admin_Controller extends MY_Controller {
 	protected function render($the_view = NULL, $template = 'admin_master') {
 		parent::render($the_view, $template);
 	}
+
+	public function is_controller($controllers = array()){
+		
+		foreach ($controllers as $controller) {
+			if($this->router->fetch_class() == $controller){
+				return true;
+			}
+		}
+		return false;
+
+	}
 }
  
 class Public_Controller extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();
-		echo 'This is from public controller';
 	}
 
 }

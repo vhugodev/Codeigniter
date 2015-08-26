@@ -18,6 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/codeigniter/';
+$config['cms_title'] = 'Evey';
+
 
 /*
 |--------------------------------------------------------------------------
