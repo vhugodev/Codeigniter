@@ -37,7 +37,8 @@ class User extends MY_Controller {
 			}
 		}
 		$this->load->helper('form');
-		$this->render('admin/login_view','admin_master');
+		//$this->render('admin/login_view');
+		$this->load->view('admin/login_view',$this->data);
 	}
 
 	public function logout() {
