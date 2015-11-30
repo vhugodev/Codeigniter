@@ -24,12 +24,12 @@
 						<?php
 						if($this->ion_auth->is_admin()) :
 						?>
-						<li class="<?php echo in_array($this->router->fetch_class(), array('dashboard')) ? 'active' : '';?>"><a href="<?php echo site_url('admin'); ?>"><i class="fa fa-television"></i> Dashboard</a></li>
+						<li class="<?php echo in_array($this->router->fetch_class(), array('dashboard')) ? 'active' : '';?>"><a href="<?php echo site_url('admin'); ?>"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
 						<li class="treeview <?php echo in_array($this->router->fetch_class(), array('groups','users')) ? 'active' : '';?>">
 							<a href="#"><i class="fa fa-users"></i> <span>Users and Groups</span> <i class="fa fa-angle-left pull-right"></i></a>
 							<ul class="treeview-menu">
-								<li class="<?php echo in_array($this->router->fetch_class(), array('users')) ? 'active' : '';?>"><a href="<?php echo site_url('admin/users'); ?>"><i class="fa fa-circle-o"></i> Users</a></li>
-								<li class="<?php echo in_array($this->router->fetch_class(), array('groups')) ? 'active' : '';?>"><a href="<?php echo site_url('admin/groups'); ?>"><i class="fa fa-circle-o"></i> Groups</a></li>
+								<li class="<?php echo in_array($this->router->fetch_class(), array('users')) ? 'active' : '';?>"><a href="<?php echo site_url('admin/users'); ?>"><i class="fa fa-circle-o"></i> <span>Users</span></a></li>
+								<li class="<?php echo in_array($this->router->fetch_class(), array('groups')) ? 'active' : '';?>"><a href="<?php echo site_url('admin/groups'); ?>"><i class="fa fa-circle-o"></i> <span>Groups</span></a></li>
 							</ul>
 						</li>
 						<?php
